@@ -1,2 +1,2 @@
 make
-/Applications/Mesen.app/Contents/MacOS/Mesen build/game.nes
+/Applications/Mesen.app/Contents/MacOS/Mesen rom/game.nes

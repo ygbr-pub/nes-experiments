@@ -19,10 +19,10 @@ default: $(NAME).nes
 $(NAME).nes: $(NAME).o crt0.o $(CFG)
 	$(LD65) -C $(CFG) -o $(NAME).nes crt0.o $(NAME).o nes.lib -Ln labels.txt --dbgfile dbg.txt
 	rm *.o
-	mv $(NAME).nes build/$(NAME).nes
-	mv $(NAME).s build/$(NAME).s
-	mv labels.txt build/labels.txt
-	mv dbg.txt build/dbg.txt
+	mv $(NAME).nes rom/$(NAME).nes
+	mv $(NAME).s rom/$(NAME).s
+	mv labels.txt rom/labels.txt
+	mv dbg.txt rom/dbg.txt
 	@echo $(NAME).nes created
 
 crt0.o: crt0.s Alpha.chr
