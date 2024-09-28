@@ -1,39 +1,34 @@
-/*	simple Hello World, for cc65, for NES
- *  writing to the screen with rendering disabled
- *	using neslib
- *	Doug Fraker 2018
- */	
+#pragma bss-name(push, "ZEROPAGE")
 
-#include "LIB/neslib.h"
-#include "LIB/nesdoug.h" 
+#include "lib/neslib.h"
+#include "lib/nesdoug.h" 
 
+// there's some oddities in the palette code, black must be 0x0f, white must be 0x30
 #define BLACK 0x0f
 #define DK_GY 0x00
 #define LT_GY 0x10
 #define WHITE 0x30
-#define ALPHA 0x28
-// there's some oddities in the palette code, black must be 0x0f, white must be 0x30
- 
-#pragma bss-name(push, "ZEROPAGE")
 
 // GLOBAL VARIABLES
-// all variables should be global for speed
-// zeropage global is even faster
-const unsigned char text[]="A LITTLE GUY IN A NES GAME"; // zero terminated c string
+// ^ all variables should be global for speed, zeropage global is even faster
 
-const unsigned char palette_bg[]={
-	BLACK, DK_GY, LT_GY, WHITE, // black, gray, lt gray, white
+const unsigned char palette_bg[] =
+{
+	BLACK, DK_GY, LT_GY, WHITE,
 	0,0,0,0,
 	0,0,0,0,
 	0,0,0,0
-	}; 
+}; 
 
-const unsigned char palette_spr[]={
-	BLACK, BLACK, DK_GY, LT_GY,  // black, black, yellow
+const unsigned char palette_spr[] =
+{
+	BLACK, BLACK, DK_GY, LT_GY,
 	0,0,0,0,
 	0,0,0,0,
 	0,0,0,0
-	}; 
+}; 
+
+const unsigned char text[] = "A LITTLE GUY IN A NES GAME";
 
 struct Vector2
 {
@@ -41,12 +36,31 @@ struct Vector2
 	unsigned int y;
 };
 
-unsigned char pad1;
-struct Vector2 _starPosition = { 0x88, 0x88 };
+// bitmask for player gamepad input
+unsigned char _input1;
+struct Vector2 _playerPosition = { 0x88, 0x88 };
+unsigned int _playerMoveSpeed = 1;
+
+// PROTOTYPES
+
+// background draw calls
+void DrawBG();
+
+// main game loop calls
+void UpdateGameState();
+void DrawGameState();
+
+// game logic
+void GetInput();
+void UpdatePlayer();
+
+// draw state methods
+void DrawPlayer();
 
 void main (void) 
 {	
-	ppu_off(); // screen off
+	// screen off
+	ppu_off();
 	
 	// load the palettes
 	pal_bg(palette_bg);
@@ -56,47 +70,69 @@ void main (void)
 	// both bg and sprite are set to 0 by default
 	bank_spr(1);
 
+	DrawBG();
+	
+	// turn on screen
+	ppu_on_all();
+		
+	// infinite loop
+	while (1)
+	{
+		// wait till beginning of the frame
+		ppu_wait_nmi();
+		// the sprites are pushed from a buffer to the OAM during nmi
+		// clear all sprites from sprite buffer
+		oam_clear();
+
+		UpdateGameState();
+		DrawGameState();
+	}
+}
+
+void UpdateGameState()
+{
+	GetInput();
+	UpdatePlayer();
+}
+
+void DrawGameState()
+{
+	DrawPlayer();
+}
+
+void DrawBG()
+{
 	// load the text
 	// set a start position for the text
 	// vram_write draws the array to the screen
 	vram_adr(NTADR_A(2,2));
 	vram_write(text,sizeof(text));
+}
+
+void GetInput()
+{
+	_input1 = pad_poll(0); // read the first controller
+}
+
+void UpdatePlayer()
+{
+	char source = _input1;
 	
-	ppu_on_all(); // turn on screen
-		
-	
-	while (1)
-	{
-		// infinite loop
+	int moveLeft  = source & PAD_LEFT;
+	int moveRight = source & PAD_RIGHT;
+	int moveUp    = source & PAD_UP;
+	int moveDown  = source & PAD_DOWN;
 
-		ppu_wait_nmi(); // wait till beginning of the frame
-		// the sprites are pushed from a buffer to the OAM during nmi
-		
-		// clear all sprites from sprite buffer
-		oam_clear();
+	if (moveLeft)  _playerPosition.x -= 1;
+	if (moveRight) _playerPosition.x += 1;
+	if (moveUp)    _playerPosition.y -= 1;
+	if (moveDown)  _playerPosition.y += 1;
+}
 
-		pad1 = pad_poll(0); // read the first controller
-
-		if(pad1 & PAD_LEFT)
-		{
-			_starPosition.x -= 1;
-		}
-		else if (pad1 & PAD_RIGHT)
-		{
-			_starPosition.x += 1;
-		}
-		if(pad1 & PAD_UP)
-		{
-			_starPosition.y -= 1;
-		}
-		else if (pad1 & PAD_DOWN)
-		{
-			_starPosition.y += 1;
-		}
-		
-		// push a single sprite
-		// oam_spr(unsigned char x,unsigned char y,unsigned char chrnum,unsigned char attr);
-		// use tile #0, palette #0
-		oam_spr(_starPosition.x, _starPosition.y, 0, 0);
-	}
+void DrawPlayer()
+{
+	// push a single sprite
+	// oam_spr(unsigned char x,unsigned char y,unsigned char chrnum,unsigned char attr);
+	// use tile #0, palette #0
+	oam_spr(_playerPosition.x, _playerPosition.y, 0, 1);
 }
