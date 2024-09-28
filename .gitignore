@@ -1,3 +1,4 @@
 project/build/
 build
-rom
+rom/*.s
+rom/*.txt
