@@ -1,0 +1,126 @@
+object FormScanlineWarnings: TFormScanlineWarnings
+  Left = 0
+  Top = 0
+  BorderStyle = bsToolWindow
+  Caption = 'Scanline warnings'
+  ClientHeight = 56
+  ClientWidth = 116
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  FormStyle = fsStayOnTop
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object GroupBox1: TGroupBox
+    Left = 2
+    Top = 0
+    Width = 112
+    Height = 54
+    Caption = 'Metasprite tab'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -9
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 0
+    object btnCyan: TSpeedButton
+      Left = 5
+      Top = 13
+      Width = 68
+      Height = 17
+      AllowAllUp = True
+      GroupIndex = 4
+      Caption = 'custom (cyan)'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -9
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      OnClick = btnCyanClick
+      OnMouseEnter = btnCyanMouseEnter
+    end
+    object Label1: TLabel
+      Left = 76
+      Top = 13
+      Width = 7
+      Height = 16
+      Caption = '3'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object btnRed: TSpeedButton
+      Left = 75
+      Top = 34
+      Width = 31
+      Height = 17
+      AllowAllUp = True
+      GroupIndex = 3
+      Caption = 'red'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -9
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      OnClick = btnCyanClick
+      OnMouseEnter = btnRedMouseEnter
+    end
+    object btnYellow: TSpeedButton
+      Left = 5
+      Top = 34
+      Width = 33
+      Height = 17
+      AllowAllUp = True
+      GroupIndex = 1
+      Caption = 'yellow'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -9
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      OnClick = btnCyanClick
+      OnMouseEnter = btnYellowMouseEnter
+    end
+    object btnOrange: TSpeedButton
+      Left = 40
+      Top = 34
+      Width = 33
+      Height = 17
+      AllowAllUp = True
+      GroupIndex = 2
+      Caption = 'orange'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -9
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      OnClick = btnCyanClick
+      OnMouseEnter = btnOrangeMouseEnter
+    end
+    object UpDown1: TUpDown
+      Left = 90
+      Top = 13
+      Width = 16
+      Height = 17
+      Min = 1
+      Max = 16
+      Position = 1
+      TabOrder = 0
+      Wrap = True
+      OnChanging = UpDown1Changing
+    end
+  end
+end
