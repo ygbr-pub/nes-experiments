@@ -12,7 +12,7 @@
 // GLOBAL VARIABLES
 // ^ all variables should be global for speed, zeropage global is even faster
 
-const unsigned char palette_bg[] =
+const char palette_bg[] =
 {
 	BLACK, DK_GY, LT_GY, WHITE,
 	0,0,0,0,
@@ -20,7 +20,7 @@ const unsigned char palette_bg[] =
 	0,0,0,0
 }; 
 
-const unsigned char palette_spr[] =
+const char palette_spr[] =
 {
 	BLACK, BLACK, DK_GY, LT_GY,
 	0,0,0,0,
@@ -37,7 +37,7 @@ struct Vector2
 };
 
 // bitmask for player gamepad input
-unsigned char _input1;
+char _input1;
 struct Vector2 _playerPosition = { 0x88, 0x88 };
 unsigned int _playerMoveSpeed = 1;
 
@@ -106,7 +106,7 @@ void DrawBG()
 	// set a start position for the text
 	// vram_write draws the array to the screen
 	vram_adr(NTADR_A(2,2));
-	vram_write(text,sizeof(text));
+	vram_write(text, sizeof(text));
 }
 
 void GetInput()
@@ -134,5 +134,5 @@ void DrawPlayer()
 	// push a single sprite
 	// oam_spr(unsigned char x,unsigned char y,unsigned char chrnum,unsigned char attr);
 	// use tile #0, palette #0
-	oam_spr(_playerPosition.x, _playerPosition.y, 0, 1);
+	oam_spr(_playerPosition.x, _playerPosition.y, 1, 1);
 }

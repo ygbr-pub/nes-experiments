@@ -1,23 +1,28 @@
 @echo off
+set CC65=cc65
+set CA65=ca65
+set LD65=ld65
+set NAME=game
+set CFG=nrom_32k_vert.cfg
 
-set name="hello"
+if "%1"=="clean" goto clean
 
-set path=%path%;..\bin\
-
-set CC65_HOME=..\
-
-cc65 -Oirs %name%.c --add-source
-ca65 crt0.s
-ca65 %name%.s -g
-
-ld65 -C nrom_32k_vert.cfg -o %name%.nes crt0.o %name%.o nes.lib -Ln labels.txt --dbgfile dbg.txt
+rem Build steps
+%CC65% -Oirs %NAME%.c --add-source
+%CA65% %NAME%.s -g
+%CA65% crt0.s
+%LD65% -C %CFG% -o %NAME%.nes crt0.o %NAME%.o nes.lib -Ln labels.txt --dbgfile dbg.txt
 
 del *.o
+move %NAME%.nes rom\%NAME%.nes
+move %NAME%.s rom\%NAME%.s
+move labels.txt rom\labels.txt
+move dbg.txt rom\dbg.txt
 
-move /Y labels.txt BUILD\ 
-move /Y %name%.s BUILD\ 
-move /Y %name%.nes BUILD\ 
+echo %NAME%.nes created
+goto end
 
-pause
+:clean
+del %NAME%.nes
 
-BUILD\%name%.nes
+:end
