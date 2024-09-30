@@ -40,7 +40,7 @@ struct Vector2
 
 // bitmask for player gamepad input
 char _input1;
-struct Vector2 _playerPosition = { 8, 7 };
+struct Vector2 _playerPosition = { 64, 63 };
 unsigned char _playerMoveSpeed = 1;
 
 // PROTOTYPES
@@ -162,6 +162,15 @@ void UpdatePlayer()
 	{
 		_playerPosition.y += 8;
 	}
+	
+	if (_playerPosition.x < 8)
+		_playerPosition.x = 8;
+	if (_playerPosition.x > 240)
+		_playerPosition.x = 240;
+	if (_playerPosition.y < 32)
+		_playerPosition.y = 32;
+	if (_playerPosition.y > 200)
+		_playerPosition.y = 200;
 	
 	
 }
