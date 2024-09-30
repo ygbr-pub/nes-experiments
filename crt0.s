@@ -285,4 +285,4 @@ sounds_data:
 
 .segment "CHARS"
 
-	.incbin "Alpha.chr"
+	.incbin "res/Alpha.chr"
