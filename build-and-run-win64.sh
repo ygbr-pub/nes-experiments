@@ -1,2 +1,2 @@
 ./compile.bat
-mesen/Mesen.exe rom/game.nes
+tools/mesen/Mesen.exe rom/game.nes
