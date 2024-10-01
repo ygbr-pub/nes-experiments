@@ -3,7 +3,7 @@
 #include "lib/neslib.h"
 #include "lib/nesdoug.h" 
 #include "res/map_forest_outpost.h"
-#include "res/map_world.h"
+#include "res/map_world_uncompressed.h"
 
 // there's some oddities in the palette code, black must be 0x0f, white must be 0x30
 #define BLACK 0x0f
@@ -40,7 +40,7 @@ struct Vector2
 
 // bitmask for player gamepad input
 char _input1;
-struct Vector2 _playerPosition = { 64, 63 };
+struct Vector2 _playerPosition = { 8, 8 };
 unsigned char _playerMoveSpeed = 1;
 
 // PROTOTYPES
@@ -80,10 +80,6 @@ void main (void)
 	// infinite loop
 	while (1)
 	{
-		
-
-		
-
 		// wait till beginning of the frame
 		ppu_wait_nmi();
 		// the sprites are pushed from a buffer to the OAM during nmi
@@ -120,7 +116,8 @@ void DrawBG()
 	vram_adr(NAMETABLE_A);
 	// this sets a start position on the BG, top left of screen
 	// vram_adr() and vram_unrle() need to be done with the screen OFF
-	vram_unrle(map_world);
+	vram_write(map_world_uncompressed, sizeof(map_world_uncompressed));
+	//vram_unrle(map_world_uncompressed);
 	// this unpacks an rle compressed full nametable
 	// created by NES Screen Tool
 	
@@ -160,7 +157,7 @@ void UpdatePlayer()
 	{
 		// Fresh down press;
 	}
-	else if (_stepDelay < 5)
+	else if (_stepDelay < 8)
 	{
 		_previousInput1 = source;
 		++_stepDelay;
