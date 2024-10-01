@@ -73,7 +73,6 @@ void main (void)
 	bank_spr(1);
 
 	DrawBG();
-
 	
 	// turn on screen
 	ppu_on_all();
@@ -81,6 +80,10 @@ void main (void)
 	// infinite loop
 	while (1)
 	{
+		
+
+		
+
 		// wait till beginning of the frame
 		ppu_wait_nmi();
 		// the sprites are pushed from a buffer to the OAM during nmi
@@ -89,6 +92,9 @@ void main (void)
 
 		UpdateGameState();
 		DrawGameState();
+		
+		// Wait for the next frame
+        // ppu_wait_frame();
 	}
 }
 
@@ -114,18 +120,28 @@ void DrawBG()
 	vram_adr(NAMETABLE_A);
 	// this sets a start position on the BG, top left of screen
 	// vram_adr() and vram_unrle() need to be done with the screen OFF
-	
 	vram_unrle(map_world);
 	// this unpacks an rle compressed full nametable
 	// created by NES Screen Tool
+	
+	// an example of how to write data to the background nametable.
+	// we must first set the vram pointer at an address, then proceed to put data in sequentially. the pointer will move along as we place things.
+	//vram_adr(NAMETABLE_A);
+	//vram_put(0xd3);
+	//vram_put(0xd3);
+	//vram_put(0xd3);
+	//vram_put(0xd3);
+	//vram_put(0xd3);
 }
+
+unsigned char _stepDelay;
+unsigned char _previousInput1;
 
 void GetInput()
 {
 	_input1 = pad_poll(0); // read the first controller
 }
 
-unsigned char _stepDelay;
 
 void UpdatePlayer()
 {
@@ -136,11 +152,21 @@ void UpdatePlayer()
 	char moveUp    = source & PAD_UP;
 	char moveDown  = source & PAD_DOWN;
 	
-	if (_stepDelay != 5)
+	// gets any new button presses from input, not just overall state. must be called after pad_poll per docs.
+	char newPad = get_pad_new(0);
+		
+	// Check if the down button was previously held and is now released
+    if ( (newPad & PAD_LEFT) || (newPad & PAD_RIGHT) || (newPad & PAD_UP) || (newPad & PAD_DOWN)) 
 	{
+		// Fresh down press;
+	}
+	else if (_stepDelay < 5)
+	{
+		_previousInput1 = source;
 		++_stepDelay;
 		return;
 	}
+	
 	_stepDelay = 0;
 
 	if (moveLeft)  
@@ -172,7 +198,7 @@ void UpdatePlayer()
 	if (_playerPosition.y > 200)
 		_playerPosition.y = 200;
 	
-	
+	_previousInput1 = _input1;
 }
 
 void DrawPlayer()
