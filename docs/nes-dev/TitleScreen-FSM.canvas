@@ -1,0 +1,15 @@
+{
+	"nodes":[
+		{"id":"ab76a9cb6a527c35","type":"text","text":"Press Start","x":-580,"y":-100,"width":250,"height":50},
+		{"id":"68a79000d8d89d00","type":"text","text":"Load Game","x":-440,"y":100,"width":250,"height":50},
+		{"id":"e6bb218c1ec0873b","type":"text","text":"New Game","x":-720,"y":100,"width":250,"height":50},
+		{"id":"e831e5c6d1564d87","type":"text","text":"Entry","x":-580,"y":-240,"width":250,"height":50,"color":"4"}
+	],
+	"edges":[
+		{"id":"aedcb7f9d25b3a70","fromNode":"e831e5c6d1564d87","fromSide":"bottom","toNode":"ab76a9cb6a527c35","toSide":"top"},
+		{"id":"bcd75aee6687bf14","fromNode":"ab76a9cb6a527c35","fromSide":"bottom","toNode":"e6bb218c1ec0873b","toSide":"top"},
+		{"id":"917d8a07ba67efd1","fromNode":"ab76a9cb6a527c35","fromSide":"bottom","toNode":"68a79000d8d89d00","toSide":"top"},
+		{"id":"07338bc36648bfed","fromNode":"e6bb218c1ec0873b","fromSide":"left","toNode":"ab76a9cb6a527c35","toSide":"left"},
+		{"id":"51427d3587599281","fromNode":"68a79000d8d89d00","fromSide":"right","toNode":"ab76a9cb6a527c35","toSide":"right"}
+	]
+}

@@ -18,24 +18,8 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "494119ffefb78040",
-            "type": "leaf",
-            "state": {
-              "type": "canvas",
-              "state": {
-                "file": "Untitled.canvas",
-                "viewState": {
-                  "x": 0,
-                  "y": 0,
-                  "zoom": 0
-                }
-              }
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -85,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 279.5
   },
   "right": {
     "id": "3a2169a7284d4d2b",
@@ -101,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Untitled.canvas",
+                "file": "Landing Page.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Untitled.canvas",
+                "file": "Landing Page.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -141,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Untitled.canvas"
+                "file": "Landing Page.md"
               }
             }
           }
@@ -162,11 +146,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "494119ffefb78040",
+  "active": "066a08ecfb1b070a",
   "lastOpenFiles": [
-    "Untitled.md",
-    "Untitled.canvas",
+    "TitleScreen-FSM.canvas",
     "Landing Page.md",
+    "Untitled.md",
     "Untitled",
     "Learning Resources",
     "Welcome.md",
