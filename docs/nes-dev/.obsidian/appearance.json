@@ -1,5 +1,8 @@
 {
   "cssTheme": "Sanctum reborn",
   "accentColor": "",
-  "theme": "obsidian"
+  "theme": "obsidian",
+  "enabledCssSnippets": [
+    "Canvas-Snippets"
+  ]
 }

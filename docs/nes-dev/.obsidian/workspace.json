@@ -18,8 +18,24 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "494119ffefb78040",
+            "type": "leaf",
+            "state": {
+              "type": "canvas",
+              "state": {
+                "file": "Untitled.canvas",
+                "viewState": {
+                  "x": 0,
+                  "y": 0,
+                  "zoom": 0
+                }
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -85,7 +101,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Landing Page.md",
+                "file": "Untitled.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Landing Page.md",
+                "file": "Untitled.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +141,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Landing Page.md"
+                "file": "Untitled.canvas"
               }
             }
           }
@@ -146,13 +162,14 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "066a08ecfb1b070a",
+  "active": "494119ffefb78040",
   "lastOpenFiles": [
+    "Untitled.md",
+    "Untitled.canvas",
+    "Landing Page.md",
     "Untitled",
     "Learning Resources",
     "Welcome.md",
-    "Landing Page.md",
-    "2024-10-01.md",
-    "Untitled.canvas"
+    "2024-10-01.md"
   ]
 }
