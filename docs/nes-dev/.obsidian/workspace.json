@@ -8,12 +8,12 @@
         "type": "tabs",
         "children": [
           {
-            "id": "7aa72d1c1f86c54e",
+            "id": "066a08ecfb1b070a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Welcome.md",
+                "file": "Landing Page.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Welcome.md",
+                "file": "Landing Page.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Welcome.md",
+                "file": "Landing Page.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Welcome.md"
+                "file": "Landing Page.md"
               }
             }
           }
@@ -146,10 +146,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "13242784eb4cbdcc",
+  "active": "066a08ecfb1b070a",
   "lastOpenFiles": [
+    "Untitled",
+    "Learning Resources",
+    "Welcome.md",
+    "Landing Page.md",
     "2024-10-01.md",
-    "Untitled.canvas",
-    "Welcome.md"
+    "Untitled.canvas"
   ]
 }
